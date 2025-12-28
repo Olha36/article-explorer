@@ -14,12 +14,44 @@ import { Box, Divider, Link, Typography } from "@mui/material";
 import formatDate from "../lib/formatDate";
 import dateIcon from "../assets/date-icon.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+
+function highlight(text: string, keywords: string[]) {
+  if (!keywords.length) return text;
+
+  const pattern = new RegExp(`(${keywords.join("|")})`, "gi");
+
+  return text.replace(pattern, "<mark>$1</mark>");
+}
+
 export default function Card() {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     fetchArticles().then(setArticles).catch(console.error);
   }, []);
+
+  const keywords = search.toLowerCase().split(/\s+/).filter(Boolean);
+
+  const filtered = articles
+    .map((article) => {
+      const title = article.title.toLowerCase();
+      const description = article.summary.toLowerCase();
+
+      let titleMatches = 0;
+      let descMatches = 0;
+
+      keywords.forEach((k) => {
+        if (title.includes(k)) titleMatches++;
+        if (description.includes(k)) descMatches++;
+      });
+
+      const score = titleMatches * 2 + descMatches; // title has higher priority
+
+      return { ...article, score, titleMatches, descMatches };
+    })
+    .filter((a) => a.score > 0 || keywords.length === 0)
+    .sort((a, b) => b.score - a.score);
 
   return (
     <>
@@ -35,6 +67,8 @@ export default function Card() {
             <StyledInputBase
               placeholder="The most successful IT companies in 2020"
               inputProps={{ "aria-label": "search" }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </Search>
         </Box>
@@ -49,7 +83,7 @@ export default function Card() {
         </Box>
 
         <ArticlesContainer>
-          {articles.map((article) => (
+          {filtered.map((article) => (
             <CardWrapper key={article.id}>
               <img
                 src={article.image_url}
@@ -69,9 +103,18 @@ export default function Card() {
                   </small>
                 </Box>
 
-                <Typography variant="h5">{article.title}</Typography>
+                <Typography
+                  variant="h5"
+                  dangerouslySetInnerHTML={{
+                    __html: highlight(article.title, keywords),
+                  }}
+                ></Typography>
 
-                <CardSummary>{article.summary}</CardSummary>
+                <CardSummary
+                  dangerouslySetInnerHTML={{
+                    __html: highlight(article.summary, keywords),
+                  }}
+                ></CardSummary>
 
                 <Box display="flex" gap="6px">
                   <Link
