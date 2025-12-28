@@ -1,6 +1,6 @@
 import type { Article, ArticlesResponse } from "../types/Card";
 
-const BASE_URL = "https://api.spaceflightnewsapi.net/v4/articles";
+const BASE_URL = "https://api.spaceflightnewsapi.net/v4/blogs";
 
 export default async function fetchArticles(): Promise<Article[]> {
   const res = await fetch(BASE_URL);
