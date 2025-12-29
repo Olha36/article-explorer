@@ -5,7 +5,7 @@ import "../css/additionalInfo.css";
 import { Box, Typography } from "@mui/material";
 
 export default function AdditionalInfo() {
-  const { id } = useParams<{ id: string }>(); 
+  const { id } = useParams<{ id: string }>();
   const { filtered } = useArticles();
 
   const article = filtered.find((a) => a.id.toString() === id);
@@ -26,20 +26,7 @@ export default function AdditionalInfo() {
 
       <Box className="page-wrapper">
         <Box className="article-container">
-          <Typography
-            variant="h5"
-            className="article-title"
-            sx={{
-              marginBottom: "50px",
-              fontWeight: 400,
-              lineHeight: "29px",
-              fontSize: {
-                xs: "1rem", // ≤ 600px
-                sm: "1.25rem",
-                md: "1.5rem",
-              },
-            }}
-          >
+          <Typography variant="h5" className="article-title">
             {article.title}
           </Typography>
 

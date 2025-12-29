@@ -27,6 +27,12 @@ header img {
   top: 150px;
   left: 75px;
 }
+.MuiTypography-h5.article-title {
+  margin-bottom: 50px;
+  font-weight: 400;
+  line-height: 29px;
+  font-size: 1rem;
+}
 
 @media screen and (min-width: 1441px) {
   .page-wrapper {
@@ -35,11 +41,19 @@ header img {
   }
 }
 
+@media (min-width: 900px) {
+  .article-title {
+    font-size: 1.5rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .article-container {
     padding: 40px 50px 0;
-
     height: 80%;
+  }
+  .article-title {
+    font-size: 1.25rem;
   }
 }
 
@@ -50,12 +64,19 @@ header img {
     padding-bottom: 20px;
   }
   .article-container {
-    padding: 40px 42px 0;
-    height: 80%;
+    padding: 40px 37px 0;
+    height: 70%;
   }
   .back-container a {
     justify-content: center;
   }
- 
+  .MuiTypography-h5.article-title {
+    margin-bottom: 20px;
+  }
 }
 
+@media screen and (max-width: 320px) {
+  .article-container {
+    padding: 40px 33px 0;
+  }
+}
