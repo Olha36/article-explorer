@@ -10,6 +10,7 @@ import {
   SearchIconWrapper,
   StyledInputBase,
   CardWrapper,
+  CardContainer,
 } from "./Card.styles";
 
 import dateIcon from "../assets/date-icon.png";
@@ -22,7 +23,7 @@ export default function Card() {
   const { search, setSearch, filtered, keywords } = useArticles();
 
   return (
-    <Box sx={{ padding: "50px 75px" }}>
+    <CardContainer >
       <Box sx={{ textAlign: "start" }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           Filter by keywords
@@ -132,6 +133,6 @@ export default function Card() {
           </CardWrapper>
         ))}
       </ArticlesContainer>
-    </Box>
+    </CardContainer>
   );
 }

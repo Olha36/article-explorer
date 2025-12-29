@@ -26,11 +26,34 @@ export default function AdditionalInfo() {
 
       <Box className="page-wrapper">
         <Box className="article-container">
-          <Typography variant="h5" style={{marginBottom: '50px', fontWeight: 400, lineHeight: '29px'}}>
+          <Typography
+            variant="h5"
+            className="article-title"
+            sx={{
+              marginBottom: "50px",
+              fontWeight: 400,
+              lineHeight: "29px",
+              fontSize: {
+                xs: "1rem", // ≤ 600px
+                sm: "1.25rem",
+                md: "1.5rem",
+              },
+            }}
+          >
             {article.title}
           </Typography>
 
-          <Typography variant="body1" sx={{fontSize: '18px', lineHeight: '150%'}}>
+          <Typography
+            variant="body1"
+            className="article-summary"
+            sx={{
+              fontSize: {
+                xs: "15px",
+                sm: "18px",
+              },
+              lineHeight: "150%",
+            }}
+          >
             {article.summary}
           </Typography>
         </Box>

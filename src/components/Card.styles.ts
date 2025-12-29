@@ -54,3 +54,12 @@ export const CardWrapper = styled("div")({
   border: "1px solid #EAEAEA",
   borderRadius: "5px",
 });
+
+
+export const CardContainer = styled("div")(({ theme }) => ({
+  padding: "50px 75px",
+
+  [theme.breakpoints.down(475)]: {
+    padding: "20px 13px",
+  },
+}));
