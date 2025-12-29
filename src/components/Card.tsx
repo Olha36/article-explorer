@@ -1,6 +1,7 @@
 import { Box, Divider, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import fallback from '../assets/fallback.png'
 
 import {
   ArticlesContainer,
@@ -55,9 +56,14 @@ export default function Card() {
         {filtered.map((article) => (
           <CardWrapper key={article.id}>
             <img
-              src={article.image_url}
+              src={article.image_url || fallback}
               alt={article.title}
-              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src !== fallback) {
+                  target.src = fallback;
+                }
+              }}
               style={{
                 width: "100%",
                 height: "auto",
@@ -67,7 +73,12 @@ export default function Card() {
               }}
             />
 
-            <Box style={{ padding: "25px", textAlign: "start" }}>
+            <Box
+              style={{
+                padding: "25px",
+                textAlign: "start",
+              }}
+            >
               <Box display="flex" alignItems="center" gap="8px" mb="27px">
                 <img src={dateIcon} alt="date icon" />
                 <small style={{ color: "#363636", opacity: 0.6 }}>
@@ -77,12 +88,26 @@ export default function Card() {
 
               <Typography
                 variant="h5"
+                sx={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  minHeight: "84px",
+                }}
                 dangerouslySetInnerHTML={{
                   __html: highlight(article.title, keywords),
                 }}
               />
 
               <CardSummary
+                sx={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 4,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  minHeight: "96px",
+                }}
                 dangerouslySetInnerHTML={{
                   __html: highlight(article.summary, keywords),
                 }}
