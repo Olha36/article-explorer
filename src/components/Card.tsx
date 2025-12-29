@@ -11,6 +11,8 @@ import {
   StyledInputBase,
   CardWrapper,
   CardContainer,
+  Image,
+  ArticleTitle,
 } from "./Card.styles";
 
 import dateIcon from "../assets/date-icon.png";
@@ -56,18 +58,11 @@ export default function Card() {
       <ArticlesContainer>
         {filtered.map((article) => (
           <CardWrapper key={article.id}>
-            <img
+            <Image
               src={article.image_url}
               alt={article.title}
               onError={(e) => (e.currentTarget.src = fallback)}
-              style={{
-                width: "100%",
-                height: "auto",
-                aspectRatio: 16 / 9,
-                borderRadius: "5px 5px 0 0",
-                objectFit: "cover",
-              }}
-            />
+            ></Image>
 
             <Box
               style={{
@@ -82,28 +77,13 @@ export default function Card() {
                 </small>
               </Box>
 
-              <Typography
-                variant="h5"
-                sx={{
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: "vertical",
-                  overflow: "hidden",
-                  minHeight: "84px",
-                }}
+              <ArticleTitle
                 dangerouslySetInnerHTML={{
                   __html: highlight(article.title, keywords),
                 }}
-              />
+              ></ArticleTitle>
 
               <CardSummary
-                sx={{
-                  display: "-webkit-box",
-                  WebkitLineClamp: 4,
-                  WebkitBoxOrient: "vertical",
-                  overflow: "hidden",
-                  minHeight: "96px",
-                }}
                 dangerouslySetInnerHTML={{
                   __html: highlight(article.summary, keywords),
                 }}

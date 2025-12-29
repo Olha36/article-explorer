@@ -47,19 +47,7 @@ export default function AdditionalInfo() {
         </Box>
 
         <Box className="back-container">
-          <RouterLink
-            to="/"
-            style={{
-              fontWeight: 700,
-              color: "#363636",
-              cursor: "pointer",
-              textDecoration: "none",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              marginTop: "35px",
-            }}
-          >
+          <RouterLink to="/" className="router-link">
             <WestIcon />
             Back to homepage
           </RouterLink>

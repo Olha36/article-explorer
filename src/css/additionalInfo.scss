@@ -87,3 +87,14 @@ header {
     }
   }
 }
+
+.router-link {
+  font-weight: 700;
+  color: #363636;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 35px;
+}

@@ -47,6 +47,7 @@ export const CardSummary = styled("p")({
   overflow: "hidden",
   textOverflow: "ellipsis",
   textAlign: "start",
+  minHeight: "96px",
 });
 
 export const CardWrapper = styled("div")({
@@ -55,7 +56,6 @@ export const CardWrapper = styled("div")({
   borderRadius: "5px",
 });
 
-
 export const CardContainer = styled("div")(({ theme }) => ({
   padding: "50px 75px",
 
@@ -63,3 +63,19 @@ export const CardContainer = styled("div")(({ theme }) => ({
     padding: "20px 13px",
   },
 }));
+
+export const Image = styled("img")({
+  width: "100%",
+  height: "auto",
+  aspectRatio: 16 / 9,
+  borderRadius: "5px 5px 0 0",
+  objectFit: "cover",
+});
+
+export const ArticleTitle = styled("h5")({
+  display: "-webkit-box",
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+  minHeight: "84px",
+});
