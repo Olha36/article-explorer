@@ -1,4 +1,4 @@
-import { Box, Divider, Link, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
@@ -15,12 +15,13 @@ import dateIcon from "../assets/date-icon.png";
 import formatDate from "../lib/formatDate";
 import { useArticles } from "../hooks/useArticles";
 import { highlight } from "../lib/highlight";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Card() {
   const { search, setSearch, filtered, keywords } = useArticles();
 
   return (
-    <Box>
+    <Box sx={{ padding: "50px 75px" }}>
       <Box sx={{ textAlign: "start" }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           Filter by keywords
@@ -88,19 +89,17 @@ export default function Card() {
               />
 
               <Box display="flex" gap="6px">
-                <Link
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <RouterLink
+                  to={`/additional-info/${article.id}`}
                   style={{
                     fontWeight: 700,
-                    textDecoration: "none",
                     color: "#363636",
                     cursor: "pointer",
+                    textDecoration: "none",
                   }}
                 >
                   Read more
-                </Link>
+                </RouterLink>
 
                 <ArrowRightAltIcon />
               </Box>
