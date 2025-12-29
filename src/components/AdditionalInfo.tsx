@@ -1,7 +1,8 @@
 import { useParams, Link as RouterLink } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
 import { useArticles } from "../hooks/useArticles";
-import "../css/additionalInfo.css";
+import "../css/additionalInfo.scss";
+
 import { Box, Typography } from "@mui/material";
 
 export default function AdditionalInfo() {

@@ -1,7 +1,7 @@
 import { Box, Divider, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import fallback from '../assets/fallback.png'
+import fallback from "../assets/fallback.png";
 
 import {
   ArticlesContainer,
@@ -23,7 +23,7 @@ export default function Card() {
   const { search, setSearch, filtered, keywords } = useArticles();
 
   return (
-    <CardContainer >
+    <CardContainer>
       <Box sx={{ textAlign: "start" }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           Filter by keywords
@@ -57,14 +57,9 @@ export default function Card() {
         {filtered.map((article) => (
           <CardWrapper key={article.id}>
             <img
-              src={article.image_url || fallback}
+              src={article.image_url}
               alt={article.title}
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (target.src !== fallback) {
-                  target.src = fallback;
-                }
-              }}
+              onError={(e) => (e.currentTarget.src = fallback)}
               style={{
                 width: "100%",
                 height: "auto",
